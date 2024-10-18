@@ -378,6 +378,18 @@ class CommandTest extends SkunkTest {
   val analyzeVerbose: Command[Void] =
     sql"ANALYZE VERBOSE city".command
 
+  val discardAll: Command[Void] =
+    sql"DISCARD ALL".command
+
+  val discardPlans: Command[Void] =
+    sql"DISCARD PLANS".command
+
+  val discardSequences: Command[Void] =
+    sql"DISCARD SEQUENCES".command
+
+  val discardTemp: Command[Void] =
+    sql"DISCARD TEMP".command
+
   sessionTest("create table, create index, alter table, alter index, drop index and drop table") { s =>
     for {
       c <- s.execute(createTable)
@@ -674,6 +686,20 @@ class CommandTest extends SkunkTest {
       c <- s.execute(revoke)
       _ <- assert("completion", c == Completion.Revoke)
       _ <- s.execute(dropRole)
+      _ <- s.assertHealthy
+    } yield "ok"
+  }
+
+  sessionTest("discard all, discard plans, discard sequences, discard temp") { s =>
+    for{
+      c <- s.execute(discardAll)
+      _ <- assert("completion", c == Completion.DiscardAll)
+      c <- s.execute(discardPlans)
+      _ <- assert("completion", c == Completion.DiscardPlans)
+      c <- s.execute(discardSequences)
+      _ <- assert("completion", c == Completion.DiscardSequences)
+      c <- s.execute(discardTemp)
+      _ <- assert("completion", c == Completion.DiscardTemp)
       _ <- s.assertHealthy
     } yield "ok"
   }
