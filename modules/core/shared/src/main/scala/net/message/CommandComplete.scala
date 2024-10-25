@@ -111,6 +111,10 @@ object CommandComplete {
     case "ALTER POLICY"               => apply(Completion.AlterPolicy)
     case "DROP POLICY"                => apply(Completion.DropPolicy)
     case "ANALYZE"                    => apply(Completion.Analyze)
+    case "DISCARD ALL"                => apply(Completion.DiscardAll)
+    case "DISCARD PLANS"              => apply(Completion.DiscardPlans)
+    case "DISCARD SEQUENCES"          => apply(Completion.DiscardSequences)
+    case "DISCARD TEMP"               => apply(Completion.DiscardTemp)
     // more .. fill in as we hit them
 
     case s                  => apply(Completion.Unknown(s))

@@ -5,7 +5,7 @@ lazy val `scala-2.12` = "2.12.19"
 lazy val `scala-2.13` = "2.13.14"
 lazy val `scala-3.0`  = "3.3.3"
 
-ThisBuild / scalaVersion       := `scala-2.13`
+ThisBuild / scalaVersion       := `scala-3.0`
 ThisBuild / crossScalaVersions :=
   Seq(`scala-2.12`, `scala-2.13`, `scala-3.0`)
 
@@ -79,6 +79,9 @@ lazy val commonSettings = Seq(
        |""".stripMargin
     )
   ),
+
+  version := "0.6.4.1",
+  publishTo := Some(ArtifactRegistryResolver.forRepository("https://europe-west1-maven.pkg.dev/beebop-398407/beebop-maven-public")),
 
   // Compilation
   scalacOptions -= "-language:experimental.macros", // doesn't work cross-version

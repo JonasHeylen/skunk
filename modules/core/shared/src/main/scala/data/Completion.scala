@@ -72,6 +72,10 @@ object Completion {
   case object DropPolicy                extends Completion
   case object Comment                   extends Completion
   case object Analyze                   extends Completion
+  case object DiscardAll                extends Completion
+  case object DiscardPlans              extends Completion
+  case object DiscardSequences          extends Completion
+  case object DiscardTemp               extends Completion
   // more ...
 
   /**
